@@ -1,10 +1,10 @@
-// ====== CANVAS SETUP ======
+// ===== CANVAS SETUP =====
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-// ====== PLAYER ======
+// ===== PLAYER =====
 let player = {
     x: 100,
     y: canvas.height - 100,
@@ -16,17 +16,30 @@ let player = {
 let ufoMode = false;
 let jumpHolding = false;
 
-// ====== TRAIL ======
+// ===== TRAIL =====
 let trail = [];
 
-// ====== LEVEL DATA ======
-let levelSpikes = [{x: 300, size: 50}, {x: 600, size: 60}, {x: 900, size: 50}];
-let movingPlatforms = [{x: 400, y: canvas.height-150, width: 150, height: 20, range: 100, speed: 2, direction: 1, startY: canvas.height-150}];
-let speed = 6;
-let lastCheckpoint = 0;
-let levelEndX = 1200;
+// ===== LEVEL DATA =====
+let levelSpikes = [
+    {x: 300, size: 50},
+    {x: 600, size: 60},
+    {x: 900, size: 50},
+    {x: 1200, size: 70},
+    {x: 1500, size: 50},
+    {x: 1800, size: 60},
+    {x: 2100, size: 50}
+];
 
-// ====== INPUT ======
+let movingPlatforms = [
+    {x: 400, y: canvas.height-150, width: 150, height: 20, range: 100, speed: 2, direction: 1, startY: canvas.height-150},
+    {x: 1000, y: canvas.height-180, width: 150, height: 20, range: 80, speed: 1.5, direction: 1, startY: canvas.height-180},
+    {x: 1600, y: canvas.height-200, width: 150, height: 20, range: 120, speed: 2, direction: 1, startY: canvas.height-200}
+];
+
+let speed = 6;
+let levelEndX = 2200;
+
+// ===== INPUT =====
 document.addEventListener('keydown', e => {
     if(e.code === 'Space' || e.code === 'ArrowUp') jumpHolding = true;
 });
@@ -34,7 +47,7 @@ document.addEventListener('keyup', e => {
     if(e.code === 'Space' || e.code === 'ArrowUp') jumpHolding = false;
 });
 
-// ====== PLAYER PHYSICS ======
+// ===== PLAYER PHYSICS =====
 function updatePlayerPhysics(){
     const gravity = 0.6;
     if(ufoMode){
@@ -59,7 +72,7 @@ function updatePlayerPhysics(){
     if(player.y < 0) player.y = 0;
 }
 
-// ====== TRAIL ======
+// ===== TRAIL =====
 function updateTrail(){
     trail.push({x: player.x + player.size/2, y: player.y + player.size/2, alpha: 1, size: player.size});
     for(let i=0;i<trail.length;i++){ trail[i].alpha -= 0.03; trail[i].size*=0.97; }
@@ -77,7 +90,7 @@ function drawTrail(ctx){
     ctx.restore();
 }
 
-// ====== SPIKES ======
+// ===== SPIKES =====
 function drawSpikes(ctx){
     const triBaseY = canvas.height - 50;
     levelSpikes.forEach(spike=>{
@@ -99,7 +112,7 @@ function drawSpikes(ctx){
     });
 }
 
-// ====== PLATFORMS ======
+// ===== PLATFORMS =====
 function updatePlatforms(){
     movingPlatforms.forEach(p=>{
         p.y += p.speed*p.direction;
@@ -117,7 +130,7 @@ function drawPlatforms(ctx){
     movingPlatforms.forEach(p=> ctx.fillRect(p.x,p.y,p.width,p.height));
 }
 
-// ====== PLAYER DRAW ======
+// ===== PLAYER DRAW =====
 function drawPlayer(ctx){
     ctx.save();
     const cx=player.x+player.size/2;
@@ -137,7 +150,7 @@ function drawPlayer(ctx){
     ctx.restore();
 }
 
-// ====== BACKGROUND ======
+// ===== BACKGROUND =====
 let bgLayers = [
     {color: '#1E1E1E', speedFactor: 0.2, x:0},
     {color: '#2E2E2E', speedFactor: 0.5, x:0},
@@ -157,7 +170,7 @@ function drawBackground(ctx){
     });
 }
 
-// ====== GAME LOOP ======
+// ===== GAME LOOP =====
 function gameLoop(){
     ctx.clearRect(0,0,canvas.width,canvas.height);
     updateBackground(); drawBackground(ctx);
