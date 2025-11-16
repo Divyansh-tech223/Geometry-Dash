@@ -1,36 +1,24 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Geometry Dash — Advanced (HTML5)</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Geometry Dash Clone</title>
+<style>
+body { margin: 0; overflow: hidden; background: #000; }
+canvas { display: block; }
+</style>
 </head>
 <body>
-  <div id="ui-top">
-    <div id="score">Score: 0</div>
-    <div id="level">Level: 1</div>
-    <div id="best">Best: 0</div>
-  </div>
+<canvas id="game"></canvas>
 
-  <canvas id="game"></canvas>
+<!-- Audio files -->
+<audio id="bgm" src="bgm.mp3" loop></audio>
+<audio id="jumpSound" src="jump.mp3"></audio>
+<audio id="crashSound" src="crash.mp3"></audio>
 
-  <div id="ui-bottom">
-    <button id="btn-pause">Pause</button>
-    <button id="btn-restart">Restart</button>
-    <label id="hold-label"><input type="checkbox" id="hold-jump"> Hold to float</label>
-    <small id="controls">Space / Up / Tap to jump</small>
-  </div>
-
-  <div id="overlay" class="hidden">
-    <div id="overlay-box">
-      <h1 id="overlay-title">Geometry Dash</h1>
-      <p id="overlay-msg">Tap or press Space to start</p>
-      <button id="overlay-start">Start</button>
-      <button id="overlay-close">Close</button>
-    </div>
-  </div>
-
-  <script src="game.js" defer></script>
+<script src="game.js"></script>
+<script>
+document.getElementById("bgm").play(); // start background music
+</script>
 </body>
 </html>
