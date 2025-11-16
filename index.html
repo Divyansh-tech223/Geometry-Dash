@@ -4,21 +4,12 @@
 <meta charset="UTF-8">
 <title>Geometry Dash Clone</title>
 <style>
-body { margin: 0; overflow: hidden; background: #000; }
-canvas { display: block; }
+    body { margin: 0; overflow: hidden; background: #111; }
+    canvas { display: block; }
 </style>
 </head>
 <body>
-<canvas id="game"></canvas>
-
-<!-- Audio files -->
-<audio id="bgm" src="bgm.mp3" loop></audio>
-<audio id="jumpSound" src="jump.mp3"></audio>
-<audio id="crashSound" src="crash.mp3"></audio>
-
+<canvas id="gameCanvas"></canvas>
 <script src="game.js"></script>
-<script>
-document.getElementById("bgm").play(); // start background music
-</script>
 </body>
 </html>
