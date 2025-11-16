@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Geometry Dash — Advanced (HTML5)</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="ui-top">
+    <div id="score">Score: 0</div>
+    <div id="level">Level: 1</div>
+    <div id="best">Best: 0</div>
+  </div>
+
+  <canvas id="game"></canvas>
+
+  <div id="ui-bottom">
+    <button id="btn-pause">Pause</button>
+    <button id="btn-restart">Restart</button>
+    <label id="hold-label"><input type="checkbox" id="hold-jump"> Hold to float</label>
+    <small id="controls">Space / Up / Tap to jump</small>
+  </div>
+
+  <div id="overlay" class="hidden">
+    <div id="overlay-box">
+      <h1 id="overlay-title">Geometry Dash</h1>
+      <p id="overlay-msg">Tap or press Space to start</p>
+      <button id="overlay-start">Start</button>
+      <button id="overlay-close">Close</button>
+    </div>
+  </div>
+
+  <script src="game.js" defer></script>
+</body>
+</html>
